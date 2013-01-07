@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 // hele nieuwe testregel
+// alweer een testregel
 public final class WinkelApplication {
 
     /** Define frame width, height and name*/
