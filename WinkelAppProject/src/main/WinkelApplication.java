@@ -16,7 +16,7 @@ import javax.swing.UIManager;
  * @author Administrator
  */
 public final class WinkelApplication {
-
+//testest
     /** Define frame width, height and name*/
     public static final int FRAME_WIDTH = 755;
     public static final int FRAME_HEIGHT = 480;
