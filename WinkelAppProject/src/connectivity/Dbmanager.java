@@ -2,7 +2,7 @@ package connectivity;
 
 import java.sql.*;
 
-
+//deze regel is een test of github werkt of niet
 
 public class Dbmanager {
     public static final String JDBC_EXCEPTION = "JDBC Exception: ";
