@@ -90,7 +90,7 @@ public class QueryManager {
     public List<Product> getProducts(int categoryId) { // haalt een lijst van producten op
         List<Product> products = new ArrayList<Product>();
         try {
-            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' ORDER BY naam ASC"; //haalt dus alle producten op met het meegegeven category ID
+            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' AND zichtbaar = '1' ORDER BY naam ASC"; //haalt dus alle producten op met het meegegeven category ID
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
                 products.add(new Product(result.getInt("product_id"),  //hetzelfde als categorylist, alleen maak je het object aan IN de add method
@@ -141,7 +141,7 @@ public class QueryManager {
     
     public void deleteProduct(int product_id)
     {
-        String SQL_deleteProduct = "DELETE FROM product WHERE product_id = '" + product_id + "'";
+        String SQL_deleteProduct = "UPDATE product SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
         try{
             ResultSet result = dbmanager.insertQuery(SQL_deleteProduct);
             result.next();
