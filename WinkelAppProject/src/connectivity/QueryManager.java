@@ -126,10 +126,10 @@ public class QueryManager {
             dbmanager.insertQuery(SQL_orderProduct);
         }
     }
-    public void addNewProduct(int product_id, int categorie_id, String naam, double prijs, String omschrijving)
+    public void addNewProduct(int categorie_id, String naam, double prijs, String omschrijving)
     {
-        String SQL_newProduct = "INSERT INTO product (product_id, categorie_id, naam, prijs, omschrijving)"
-                + " VALUES (' " + product_id + "', '"+ categorie_id + "', '" + naam + "', '" + prijs + "', '" + omschrijving + "')";
+        String SQL_newProduct = "INSERT INTO product (categorie_id, naam, prijs, omschrijving)"
+                + " VALUES (' " + categorie_id + "', '" + naam + "', '" + prijs + "', '" + omschrijving + "')";
         try{
             ResultSet result = dbmanager.insertQuery(SQL_newProduct);
             result.next();
