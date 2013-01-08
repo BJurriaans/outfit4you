@@ -89,8 +89,8 @@ public final class WinkelApplication {
         mainWindow.getContentPane().setLayout(new BorderLayout());
           //showPanel(new view.CategoryList());  //laat als eerste de categorylist zien als je programma opstart
           //showPanel(new productDelete.ProductDeleteAsk());
-          showPanel(new view.ProductAdd());
-          //showPanel(new productModify.ProductModifyAsk());
+          //showPanel(new view.ProductAdd());
+          showPanel(new productModify.ProductModifyAsk());
         mainWindow.setVisible(true);
     }
 
