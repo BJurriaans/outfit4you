@@ -35,7 +35,6 @@ public class DeleteProduct implements ActionListener {
 
         productamount = WinkelApplication.getBasket().getProductAmount(deleteproduct);
 
-
         if (productamount == 1) {
             WinkelApplication.getBasket().deleteProduct(deleteproduct);
         } else if (productamount > 1) {

@@ -30,7 +30,6 @@ public class Basket extends Observable {
     }
 
     public void deleteProduct(Product product) {
-        System.out.println("test");
         // check if product is allready added to the basket
         if (products.containsKey(product)) {
             products.remove(product);
