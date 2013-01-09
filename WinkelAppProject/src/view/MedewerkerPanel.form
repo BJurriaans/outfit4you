@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[755, 480]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[755, 480]"/>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="bestellingO" min="-2" pref="197" max="-2" attributes="0"/>
+                  <Component id="klantOA" min="-2" pref="197" max="-2" attributes="0"/>
+                  <Component id="klantN" min="-2" pref="197" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bestellingP" max="32767" attributes="0"/>
+                  <Component id="productL" max="32767" attributes="0"/>
+                  <Component id="logU" min="-2" pref="197" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="151" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="klantN" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="bestellingP" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="klantOA" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="productL" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bestellingO" max="32767" attributes="0"/>
+                  <Component id="logU" min="-2" pref="49" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="139" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="klantN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nieuwe klant toevoegen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="klantNActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="klantOA">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Klanten overzicht/aanpassen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="klantOAActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="productL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Producten Lijst"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bestellingP">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bestellingen plaatsen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bestellingPActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bestellingO">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bestellingen overzicht"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="logU">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Log uit"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

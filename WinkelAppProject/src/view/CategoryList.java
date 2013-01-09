@@ -3,10 +3,12 @@ package view;
 import connectivity.QueryManager;
 import main.WinkelApplication;
 import java.awt.Cursor;
+import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Category;
@@ -14,6 +16,7 @@ import model.Category;
 public class CategoryList extends JPanel implements MouseListener {
     private final int verticalPosition = 60;
     private final int offset = 40;
+    private JButton jbReturn = new JButton();
 
     public CategoryList() { 
         super();
@@ -26,6 +29,7 @@ public class CategoryList extends JPanel implements MouseListener {
         addTitle();
         addcategoryItems();
         addBasket();
+        addReturn();
     }
 
     /** add the page's title */
@@ -35,6 +39,12 @@ public class CategoryList extends JPanel implements MouseListener {
         lblTitle.setBounds(20, 20, 150, 20);
         lblTitle.setFont(WinkelApplication.FONT_16_BOLD);
         add(lblTitle);
+    }
+    
+    public void addReturn(){
+        jbReturn.setText("Terug");
+        jbReturn.setBounds(560, 380, 150, 50);
+        add(jbReturn);
     }
 
     /** add the different catergories to the page */
@@ -105,4 +115,19 @@ public class CategoryList extends JPanel implements MouseListener {
         super.paint(graphics);
         graphics.drawLine(20, 45, 540, 45);
     }
+    
+    @Override
+    public boolean action (Event evt, Object what)
+	{	
+		// Was the focus of the event our button
+		if (evt.target == what)
+		{
+                     WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
+			return true;
+		}
+                else{
+			return false;
+                }
+	}
+    
 }
