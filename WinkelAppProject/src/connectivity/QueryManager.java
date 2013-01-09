@@ -162,9 +162,11 @@ public class QueryManager {
         }
     }
     
-    public void addNewKlant (int klant_id, String naam, String adres, String postcode, String woonplaats )
+    public void addKlant (int klant_id, String naam, String adres, String postcode, String woonplaats )
     {
-        String SQL_newKlant = "INSERT INTO klant VALUES ('" + klant_id + "', '" + naam + "', '" + adres + "', '" + postcode +"', '" + woonplaats + "')";
+        String SQL_newKlant = "INSERT INTO klant (klant_id, naam,"
+                + " adres, postcode, woonplaats) VALUES ('" + klant_id + "', '"
+                + naam + "', '" + adres + "', '" + postcode +"', '" + woonplaats + "')";
         try {
             ResultSet result = dbmanager.insertQuery(SQL_newKlant);
             result.next();
@@ -195,4 +197,23 @@ public class QueryManager {
             System.out.println("Klant wijzigen is niet gelukt: " + e.getMessage());
         }
     }
+    
+    public List<Klant> getKlantList(){
+        List<Klant> klanten = new ArrayList<Klant>();
+        try{
+            String sql ="SELECT * FROM klant";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()){
+                klanten.add(new Klant(result.getInt("klant_id"),
+                        result.getString("naam"), 
+                        result.getString("adres"),
+                        result.getString("postcode"), 
+                        result.getString("woonplaats")));
+            }
+        } catch(SQLException e){
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return klanten;
+    }
+    
 }
