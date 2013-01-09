@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Observable;
 import main.WinkelApplication;
+import view.Payment;
 
 public class Basket extends Observable {
 
@@ -21,9 +23,10 @@ public class Basket extends Observable {
     public void addProduct(Product product) {
         // check if product is allready added to the basket
         if (products.containsKey(product)) {
-            products.put(product, products.get(product) + 1); //als het niet gelijk is, stop het in een nieuwe plaats (+1)? of : doe aantal + 1
+            products.put(product, products.get(product) + 1);
+            
         } else {
-            products.put(product, 1); //niet gelijk: stop het op dezelfde plaats of : doe product in nieuw plaats, zet aantal op 1
+            products.put(product, 1); 
         }
         setChanged();
         notifyObservers();
@@ -31,11 +34,22 @@ public class Basket extends Observable {
 
     public void deleteProduct(Product product) {
         // check if product is allready added to the basket
-        if (products.containsKey(product)) {
+        int i = WinkelApplication.getBasket().getProductAmount(product);
+        int id = product.getProductId();
+
+        System.out.println("" + product.getProductId());
+        
+        if (WinkelApplication.getBasket().getProductAmount(product) == 1) {
+           
             products.remove(product);
             WinkelApplication.getInstance().showPanel(new view.Payment());
-        }
 
+        }else{
+            i--;
+            products.put(product, i);
+            WinkelApplication.getInstance().showPanel(new view.Payment());
+        }
+         
         if (products.size() == 0) {
             WinkelApplication.getInstance().showPanel(new view.CategoryList());
         }
@@ -49,7 +63,7 @@ public class Basket extends Observable {
 
     public List<Product> getProducts() {
         List<Product> list = new LinkedList<Product>(products.keySet());
-        return Collections.unmodifiableList(list);
+        return list;
     }
 
     public int getProductAmount(Product product) {

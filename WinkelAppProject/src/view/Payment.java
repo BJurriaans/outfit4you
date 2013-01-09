@@ -27,11 +27,11 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
     private JComboBox cmbPayMethod;
     private JTextField tfNote;
     private final String[] payMethods = {"Vooraf per bank", "Onder rembours", "Geen"};
-    private JButton btnDeleteproduct;
-    private Product productdelete;
+    public static JButton btnDeleteproduct;
+    public static Product productdelete;
     private JButton btnEmptyBasket;
     public JLabel lblamount;
-    public static JTextField txtProductAantal;
+    //public static JTextField txtProductAantal;
 
     public Payment() {
         super();
@@ -111,7 +111,7 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
             JButton btnDeleteproduct = new JButton("X");
             btnDeleteproduct.setBounds(380, verticalPosition + i * productOffset, 20, 20);
             btnDeleteproduct.setFont(WinkelApplication.FONT_10_BOLD);
-            btnDeleteproduct.setName("" + i);
+            btnDeleteproduct.setName(String.valueOf(product.hashCode()));
             btnDeleteproduct.addActionListener(deleteproduct);
             add(btnDeleteproduct);
         }
