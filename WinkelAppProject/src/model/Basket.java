@@ -35,9 +35,6 @@ public class Basket extends Observable {
     public void deleteProduct(Product product) {
         // check if product is allready added to the basket
         int i = WinkelApplication.getBasket().getProductAmount(product);
-        int id = product.getProductId();
-
-        System.out.println("" + product.getProductId());
         
         if (WinkelApplication.getBasket().getProductAmount(product) == 1) {
            

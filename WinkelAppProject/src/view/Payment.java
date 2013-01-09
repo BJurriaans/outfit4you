@@ -106,7 +106,7 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
             lblPrice.setFont(WinkelApplication.FONT_10_PLAIN);
             add(lblPrice);
 
-            DeleteProduct deleteproduct = new DeleteProduct();
+            DeleteProduct deleteproduct = new DeleteProduct(product);
 
             JButton btnDeleteproduct = new JButton("X");
             btnDeleteproduct.setBounds(380, verticalPosition + i * productOffset, 20, 20);

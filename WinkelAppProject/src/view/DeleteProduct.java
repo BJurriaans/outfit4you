@@ -23,29 +23,13 @@ public class DeleteProduct implements ActionListener {
     private Payment lblset;
     List<Product> products = WinkelApplication.getBasket().getProducts();
 
-    public void productlist() {
-
-        for (int i = 0; i < products.size(); i++) {
-            deleteproduct = products.get(i);
-        }
+    public DeleteProduct(Product product) {
+        deleteproduct = product;
     }
 
     public void actionPerformed(ActionEvent event) {
-        productlist();
 
-        productamount = WinkelApplication.getBasket().getProductAmount(deleteproduct);
-
-        
-            WinkelApplication.getBasket().deleteProduct(deleteproduct);
-        
-
-       // System.out.println("" + WinkelApplication.getBasket().getProductAmount(deleteproduct));
-        //System.out.println("" + products);
-        //products.get(productamount) - 1;
-        //products.remove(0);
-        //System.out.println("" + products);
-        // WinkelApplication.getInstance().showPanel(new view.Payment());
-
+        WinkelApplication.getBasket().deleteProduct(deleteproduct);
 
     }
 }
