@@ -28,8 +28,6 @@ public class DeleteProduct implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
-
         WinkelApplication.getBasket().deleteProduct(deleteproduct);
-
     }
 }
