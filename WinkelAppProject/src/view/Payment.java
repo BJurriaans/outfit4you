@@ -27,6 +27,11 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
     private JComboBox cmbPayMethod;
     private JTextField tfNote;
     private final String[] payMethods = {"Vooraf per bank", "Onder rembours", "Geen"};
+    private JButton btnDeleteproduct;
+    private Product productdelete;
+    private JButton btnEmptyBasket;
+    public JLabel lblamount;
+    public static JTextField txtProductAantal;
 
     public Payment() {
         super();
@@ -84,13 +89,14 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
 
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
+            productdelete = product;
 
             JLabel lblProduct = new JLabel(product.getName());
             lblProduct.setBounds(20, verticalPosition + i * productOffset, 420, 20);
             lblProduct.setFont(WinkelApplication.FONT_10_PLAIN);
             add(lblProduct);
 
-            JLabel lblAmount = new JLabel(String.valueOf(WinkelApplication.getBasket().getProductAmount(product)));
+            JLabel lblAmount = new JLabel(String.valueOf(WinkelApplication.getBasket().getProductAmount(productdelete)));
             lblAmount.setBounds(410, verticalPosition + i * productOffset, 70, 20);
             lblAmount.setFont(WinkelApplication.FONT_10_PLAIN);
             add(lblAmount);
@@ -99,9 +105,23 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
             lblPrice.setFont(WinkelApplication.FONT_10_PLAIN);
             add(lblPrice);
-            
-           
+
+            DeleteProduct deleteproduct = new DeleteProduct();
+
+            JButton btnDeleteproduct = new JButton("X");
+            btnDeleteproduct.setBounds(380, verticalPosition + i * productOffset, 20, 20);
+            btnDeleteproduct.setFont(WinkelApplication.FONT_10_BOLD);
+            btnDeleteproduct.setName("" + i);
+            btnDeleteproduct.addActionListener(deleteproduct);
+            add(btnDeleteproduct);
         }
+
+        btnEmptyBasket = new JButton("Empty Basket");
+        btnEmptyBasket.setBounds(300, 150, 120, 30);
+        btnEmptyBasket.setFont(WinkelApplication.FONT_10_BOLD);
+        btnEmptyBasket.setName("");
+        btnEmptyBasket.addActionListener(this);
+        this.add(btnEmptyBasket);
 
         // create total labels
         JLabel lblTotal = new JLabel("Totaal: ");
@@ -124,71 +144,71 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
         add(lblFormTitle);
 
         JLabel lblNaam = new JLabel("Naam:");
-        lblNaam.setBounds(20, verticalPosition + products.size() *  productOffset + (formOffset * 3), 100, 20);
+        lblNaam.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 3), 100, 20);
         lblNaam.setFont(WinkelApplication.FONT_10_BOLD);
         add(lblNaam);
 
         tfNaam = new JTextField();
-        tfNaam.setBounds(120, verticalPosition + products.size() *  productOffset + (formOffset * 3), 130, 20);
+        tfNaam.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfNaam.setFont(WinkelApplication.FONT_10_BOLD);
         tfNaam.setText(WinkelApplication.getKlant().getNaam());
         add(tfNaam);
 
         JLabel lblPostcode = new JLabel("Postcode:");
-        lblPostcode.setBounds(320, verticalPosition + products.size() *  productOffset + (formOffset * 3), 100, 20);
+        lblPostcode.setBounds(320, verticalPosition + products.size() * productOffset + (formOffset * 3), 100, 20);
         lblPostcode.setFont(WinkelApplication.FONT_10_BOLD);
         add(lblPostcode);
 
         tfPostcode = new JTextField();
-        tfPostcode.setBounds(420, verticalPosition + products.size() *  productOffset + (formOffset * 3), 130, 20);
+        tfPostcode.setBounds(420, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfPostcode.setFont(WinkelApplication.FONT_10_BOLD);
         tfPostcode.setText(WinkelApplication.getKlant().getPostcode());
         add(tfPostcode);
 
         JLabel lblAddress = new JLabel("Adres:");
-        lblAddress.setBounds(20, verticalPosition + products.size() *  productOffset + (formOffset * 4), 100, 20);
+        lblAddress.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 4), 100, 20);
         lblAddress.setFont(WinkelApplication.FONT_10_BOLD);
         add(lblAddress);
 
         tfAddress = new JTextField();
-        tfAddress.setBounds(120, verticalPosition + products.size() *  productOffset + (formOffset * 4), 130, 20);
+        tfAddress.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfAddress.setFont(WinkelApplication.FONT_10_BOLD);
         tfAddress.setText(WinkelApplication.getKlant().getAdres());
         add(tfAddress);
 
         JLabel lblWoonplaats = new JLabel("Woonplaats:");
-        lblWoonplaats.setBounds(320, verticalPosition + products.size() *  productOffset + (formOffset * 4), 100, 20);
+        lblWoonplaats.setBounds(320, verticalPosition + products.size() * productOffset + (formOffset * 4), 100, 20);
         lblWoonplaats.setFont(WinkelApplication.FONT_10_BOLD);
         add(lblWoonplaats);
 
         tfWoonplaats = new JTextField();
-        tfWoonplaats.setBounds(420, verticalPosition + products.size() *  productOffset + (formOffset * 4), 130, 20);
+        tfWoonplaats.setBounds(420, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfWoonplaats.setFont(WinkelApplication.FONT_10_BOLD);
         tfWoonplaats.setText(WinkelApplication.getKlant().getWoonplaats());
         add(tfWoonplaats);
 
         JLabel lblPayMethod = new JLabel("Betaalmethode:");
-        lblPayMethod.setBounds(20, verticalPosition + products.size() *  productOffset + (formOffset * 5), 100, 20);
+        lblPayMethod.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 5), 100, 20);
         lblPayMethod.setFont(WinkelApplication.FONT_10_BOLD);
         add(lblPayMethod);
 
         cmbPayMethod = new JComboBox(payMethods);
-        cmbPayMethod.setBounds(120, verticalPosition + products.size() *  productOffset + (formOffset * 5), 250, 20);
+        cmbPayMethod.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 5), 250, 20);
         cmbPayMethod.setFont(WinkelApplication.FONT_10_BOLD);
         add(cmbPayMethod);
 
         JLabel lblNote = new JLabel("Opmerking:");
-        lblNote.setBounds(20, verticalPosition + products.size() *  productOffset + (formOffset * 6), 100, 20);
+        lblNote.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 6), 100, 20);
         lblNote.setFont(WinkelApplication.FONT_10_BOLD);
         add(lblNote);
 
         tfNote = new JTextField();
-        tfNote.setBounds(120, verticalPosition + products.size() *  productOffset + (formOffset * 6), 250, 80);
+        tfNote.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 6), 250, 80);
         tfNote.setFont(WinkelApplication.FONT_10_BOLD);
         add(tfNote);
 
         JButton btnSend = new JButton("Verzend bestelling");
-        btnSend.setBounds(120, verticalPosition + products.size() *  productOffset + (formOffset * 9), 150, 20);
+        btnSend.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 9), 150, 20);
         btnSend.setFont(WinkelApplication.FONT_10_BOLD);
         btnSend.addActionListener(this);
         this.add(btnSend);
@@ -202,10 +222,15 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
         String postcode = tfPostcode.getText();
         String woonplaats = tfWoonplaats.getText();
         String betaalmethode = (String) cmbPayMethod.getSelectedItem();
-        WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(), 
+        WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(),
                 naam, adres, postcode, woonplaats, opmerking, betaalmethode);
         WinkelApplication.getBasket().empty();
         WinkelApplication.getInstance().showPanel(new OrderSend());
+
+        if (event.getSource() == btnEmptyBasket) {
+            WinkelApplication.getBasket().empty();
+            WinkelApplication.getInstance().showPanel(new view.CategoryList());
+        }
     }
 
     @Override

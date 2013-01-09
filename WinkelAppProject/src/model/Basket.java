@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Observable;
+import main.WinkelApplication;
 
 public class Basket extends Observable {
 
@@ -26,6 +27,19 @@ public class Basket extends Observable {
         }
         setChanged();
         notifyObservers();
+    }
+
+    public void deleteProduct(Product product) {
+        System.out.println("test");
+        // check if product is allready added to the basket
+        if (products.containsKey(product)) {
+            products.remove(product);
+            WinkelApplication.getInstance().showPanel(new view.Payment());
+        }
+
+        if (products.size() == 0) {
+            WinkelApplication.getInstance().showPanel(new view.CategoryList());
+        }
     }
 
     public void empty() {
