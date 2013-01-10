@@ -90,7 +90,7 @@ public class QueryManager {
     public List<Product> getProducts(int categoryId) { // haalt een lijst van producten op
         List<Product> products = new ArrayList<Product>();
         try {
-            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' ORDER BY naam ASC"; //haalt dus alle producten op met het meegegeven category ID
+            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' AND zichtbaar = '1' ORDER BY naam ASC"; //haalt dus alle producten op met het meegegeven category ID
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
                 products.add(new Product(result.getInt("product_id"),  //hetzelfde als categorylist, alleen maak je het object aan IN de add method
@@ -126,10 +126,10 @@ public class QueryManager {
             dbmanager.insertQuery(SQL_orderProduct);
         }
     }
-    public void addNewProduct(int product_id, int categorie_id, String naam, double prijs, String omschrijving)
+    public void addNewProduct(int categorie_id, String naam, double prijs, String omschrijving)
     {
-        String SQL_newProduct = "INSERT INTO product (product_id, categorie_id, naam, prijs, omschrijving)"
-                + " VALUES (' " + product_id + "', '"+ categorie_id + "', '" + naam + "', '" + prijs + "', '" + omschrijving + "')";
+        String SQL_newProduct = "INSERT INTO product (categorie_id, naam, prijs, omschrijving)"
+                + " VALUES (' " + categorie_id + "', '" + naam + "', '" + prijs + "', '" + omschrijving + "')";
         try{
             ResultSet result = dbmanager.insertQuery(SQL_newProduct);
             result.next();
@@ -141,7 +141,7 @@ public class QueryManager {
     
     public void deleteProduct(int product_id)
     {
-        String SQL_deleteProduct = "DELETE FROM product WHERE product_id = '" + product_id + "'";
+        String SQL_deleteProduct = "UPDATE product SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
         try{
             ResultSet result = dbmanager.insertQuery(SQL_deleteProduct);
             result.next();
