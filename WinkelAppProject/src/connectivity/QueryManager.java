@@ -216,4 +216,18 @@ public class QueryManager {
         return klanten;
     }
     
+       public int getCategoryId(String categoryName) {
+       
+        int id = -1;
+        try {
+            String SQL_getCategoryId = "SELECT categorie_id FROM categorie WHERE naam = '" + categoryName + "'";
+            ResultSet result = dbmanager.doQuery(SQL_getCategoryId);
+           if (result.next()) {
+           id = result.getInt("categorie_id");
+           }
+        } catch (SQLException e) {
+            System.out.println("Categorie id ophalen is niet gelukt" + e.getMessage());
+        }
+        return id;
+    }
 }
