@@ -142,12 +142,12 @@ public final class WinkelApplication {
 
             @Override
             public void run() {   //wordt automatisch opgestart? (special method?)
-                try {
+                //try {
                     applicatie.initialize(); //opent database
                     applicatie.startup();  //haalt klant met ID 1 op, en laat categorie list zien
-                } catch (Exception e) {
+                /*} catch (Exception e) {
                     System.out.println("Application" + applicatie.getClass().getName() + "failed to launch");
-                }
+                }*/
             }
         });
     }

@@ -20,7 +20,7 @@ public class ProductAdd extends javax.swing.JPanel {
    private String naam;
    private double prijs;
    private String omschrijving;
-   private ArrayList<String> categoryNames = new ArrayList<String>();
+   //private ArrayList<String> categoryNames = new ArrayList<String>();
    private String[] nameSet;
    QueryManager queryManager = WinkelApplication.getQueryManager();
    private String name;
@@ -30,7 +30,7 @@ public class ProductAdd extends javax.swing.JPanel {
         initComponents();
         labels();
         nameSet = new String[ categories.size() ];
-        listCategory().toArray(nameSet);
+        listCategory();
         
      //   Category categorie = new Category();
      //   System.out.println(categorie.getCategoryId());
@@ -231,21 +231,11 @@ public class ProductAdd extends javax.swing.JPanel {
 }
 
     private ArrayList listCategory(){
-       
-        
-        for (int i = 1; i <= categories.size(); i++) 
-        {
-            Category category = categories.get(i);
-            name = category.getName();
-            categoryNames.add(i, category.getName().toString());
-           // jComboBox1.addItem(name);
-          
-          //  nameSet = categories.toArray();
-             
-            
+        for(Category c : categories){
+            jComboBox1.addItem(c.getName());
         }
-    //   nameSet = (String[]) categoryNames.toArray();
-          return categoryNames; 
+        //jComboBox1.
+        return null; 
     }
 
 }
