@@ -5,6 +5,8 @@ import main.WinkelApplication;
 import java.awt.Cursor;
 import java.awt.Event;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -13,10 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Category;
 
-public class CategoryList extends JPanel implements MouseListener {
+public class CategoryList extends JPanel implements MouseListener,ActionListener {
     private final int verticalPosition = 60;
     private final int offset = 40;
-    private JButton jbReturn = new JButton();
 
     public CategoryList() { 
         super();
@@ -34,6 +35,7 @@ public class CategoryList extends JPanel implements MouseListener {
 
     /** add the page's title */
     private void addTitle() {
+        
         JLabel lblTitle = new JLabel();
         lblTitle.setText("Winkelapplicatie");
         lblTitle.setBounds(20, 20, 150, 20);
@@ -42,8 +44,10 @@ public class CategoryList extends JPanel implements MouseListener {
     }
     
     public void addReturn(){
+        JButton jbReturn = new JButton();
         jbReturn.setText("Terug");
         jbReturn.setBounds(560, 380, 150, 50);
+        jbReturn.addActionListener(this);
         add(jbReturn);
     }
 
@@ -88,6 +92,7 @@ public class CategoryList extends JPanel implements MouseListener {
         int categoryId = Integer.parseInt(label.getName());
         ProductList productList = new ProductList(categoryId);
         WinkelApplication.getInstance().showPanel(productList);
+        System.out.println("test");
     }
 
     @Override
@@ -115,19 +120,10 @@ public class CategoryList extends JPanel implements MouseListener {
         super.paint(graphics);
         graphics.drawLine(20, 45, 540, 45);
     }
+
+    public void actionPerformed(ActionEvent event) { 
+        WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
+    }
     
-    @Override
-    public boolean action (Event evt, Object what)
-	{	
-		// Was the focus of the event our button
-		if (evt.target == what)
-		{
-                     WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
-			return true;
-		}
-                else{
-			return false;
-                }
-	}
     
 }

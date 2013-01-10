@@ -31,7 +31,8 @@ public class Payment extends JPanel implements MouseListener, ActionListener {
     public static Product productdelete;
     private JButton btnEmptyBasket;
     public JLabel lblamount;
-    //public static JTextField txtProductAantal;
+    private int productaantal;
+    private JTextField txtProductAantal;
 
     public Payment() {
         super();

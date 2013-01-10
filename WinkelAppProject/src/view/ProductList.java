@@ -18,6 +18,7 @@ public class ProductList extends JPanel implements MouseListener, ActionListener
     private final int categoryId;
     private final int verticalPosition = 60;
     private final int offset = 40;
+    private int count = 0; 
 
     public ProductList(int categoryId) {
         super();
