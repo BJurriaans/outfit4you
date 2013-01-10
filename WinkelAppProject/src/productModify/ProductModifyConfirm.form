@@ -57,7 +57,7 @@
                                   <Component id="jTextField5" min="-2" pref="119" max="-2" attributes="0"/>
                                   <Component id="jTextField4" min="-2" pref="119" max="-2" attributes="0"/>
                                   <Component id="jTextField3" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="119" max="-2" attributes="0"/>
+                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -89,7 +89,7 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -227,8 +227,6 @@
         <Property name="text" type="java.lang.String" value="jLabel17"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField4">
@@ -242,6 +240,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel18">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
     </Component>
   </SubComponents>
 </Form>

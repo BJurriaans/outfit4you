@@ -2,7 +2,9 @@
 package productModify;
 
 import connectivity.QueryManager;
+import java.util.List;
 import main.WinkelApplication;
+import model.Category;
 import model.Product;
 
 
@@ -14,10 +16,13 @@ private int categorie_id;
 private String naam;
 private double prijs;
 private String omschrijving;
-   
+QueryManager queryManager = WinkelApplication.getQueryManager();
+List<Category> categories = queryManager.getCategories();
+ 
     public ProductModifyConfirm() {
         initComponents();
         productInfo(ProductModifyAsk.productMod_id_send);
+        listCategory();
     }
 
    
@@ -43,11 +48,11 @@ private String omschrijving;
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
 
         jLabel1.setFont(WinkelApplication.FONT_10_BOLD);
         jLabel1.setText("Oude gegevens");
@@ -149,7 +154,7 @@ private String omschrijving;
                                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(127, 127, 127))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -171,7 +176,7 @@ private String omschrijving;
                     .addComponent(jLabel3)
                     .addComponent(jLabel14)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -205,15 +210,13 @@ private String omschrijving;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!jTextField2.getText().isEmpty() && !jTextField3.getText().equals("") && !jTextField4.getText().isEmpty())
+        if (!jTextField3.getText().equals("") && !jTextField4.getText().isEmpty())
         {
                    
-        categorie_id = Integer.parseInt(jTextField2.getText());        
+        categorie_id = getCategoryId();        
         naam = jTextField3.getText();
         prijs = Double.parseDouble(jTextField4.getText());
         omschrijving = jTextField5.getText();
-        
-        QueryManager queryManager = WinkelApplication.getQueryManager();
         queryManager.modifyProduct(ProductModifyAsk.productMod_id_send, categorie_id, naam, prijs, omschrijving);
         WinkelApplication.getInstance().showPanel(new ProductModified());
         }
@@ -233,6 +236,7 @@ private String omschrijving;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -250,7 +254,6 @@ private String omschrijving;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -264,10 +267,21 @@ private void productInfo(int product_id) {
     jLabel16.setText(Double.toString(product.getPrice()));
     jLabel17.setText(product.getDescription());
     
-    jTextField2.setText(Integer.toString(product.getCategorieId()));
     jTextField3.setText(product.getName());
     jTextField4.setText(Double.toString(product.getPrice()));
     jTextField5.setText(product.getDescription());
 }
 
+ private void listCategory(){
+        for(Category c : categories){
+            jComboBox1.addItem(c.getName());
+        }
+         
+    }
+
+    private int getCategoryId(){
+        String categoryName = jComboBox1.getSelectedItem().toString();
+        int id = queryManager.getCategoryId(categoryName);
+        return id;        
+    }
 }
