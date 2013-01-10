@@ -15,17 +15,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Category;
 
-public class CategoryList extends JPanel implements MouseListener,ActionListener {
+public class CategoryList extends JPanel implements MouseListener, ActionListener {
+
     private final int verticalPosition = 60;
     private final int offset = 40;
 
-    public CategoryList() { 
+    public CategoryList() {
         super();
         setLayout(null);
         initComponents(); //methods staan hieronder
     }
 
-    /** create the gui for this page */
+    /**
+     * create the gui for this page
+     */
     private void initComponents() {
         addTitle();
         addcategoryItems();
@@ -33,17 +36,19 @@ public class CategoryList extends JPanel implements MouseListener,ActionListener
         addReturn();
     }
 
-    /** add the page's title */
+    /**
+     * add the page's title
+     */
     private void addTitle() {
-        
+
         JLabel lblTitle = new JLabel();
         lblTitle.setText("Winkelapplicatie");
         lblTitle.setBounds(20, 20, 150, 20);
         lblTitle.setFont(WinkelApplication.FONT_16_BOLD);
         add(lblTitle);
     }
-    
-    public void addReturn(){
+
+    public void addReturn() {
         JButton jbReturn = new JButton();
         jbReturn.setText("Terug");
         jbReturn.setBounds(560, 380, 150, 50);
@@ -51,7 +56,9 @@ public class CategoryList extends JPanel implements MouseListener,ActionListener
         add(jbReturn);
     }
 
-    /** add the different catergories to the page */
+    /**
+     * add the different catergories to the page
+     */
     private void addcategoryItems() {
         QueryManager queryManager = WinkelApplication.getQueryManager();
         List<Category> categories = queryManager.getCategories();
@@ -74,13 +81,15 @@ public class CategoryList extends JPanel implements MouseListener,ActionListener
 
             JLabel lblDescription = new JLabel();
             lblDescription.setText(category.getDescription());
-            lblDescription.setBounds(35, verticalPosition  + i * offset + 15, 200, 20);
+            lblDescription.setBounds(35, verticalPosition + i * offset + 15, 200, 20);
             lblDescription.setFont(WinkelApplication.FONT_10_PLAIN);
             add(lblDescription);
         }
     }
 
-    /** add the basket view into this page */
+    /**
+     * add the basket view into this page
+     */
     private void addBasket() {
         BasketDisplay basket = new BasketDisplay();
         this.add(basket);
@@ -121,9 +130,7 @@ public class CategoryList extends JPanel implements MouseListener,ActionListener
         graphics.drawLine(20, 45, 540, 45);
     }
 
-    public void actionPerformed(ActionEvent event) { 
+    public void actionPerformed(ActionEvent event) {
         WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
     }
-    
-    
 }
