@@ -36,6 +36,7 @@ public class MedewerkerPanel extends javax.swing.JPanel {
         logU = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(755, 480));
+        setName("mwPanel"); // NOI18N
         setPreferredSize(new java.awt.Dimension(755, 480));
 
         klantN.setText("Nieuwe klant toevoegen");
