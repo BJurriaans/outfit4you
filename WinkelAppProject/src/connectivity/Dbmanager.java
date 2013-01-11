@@ -9,6 +9,9 @@ public class Dbmanager {
     public static final String SQL_EXCEPTION = "SQL Exception: ";
 
     public Connection connection;   //object voor diepe sql code gok ik
+    
+    public Dbmanager(){
+    }
 
     /**
      * Open database connection

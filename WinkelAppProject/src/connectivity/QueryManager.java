@@ -14,6 +14,7 @@ public class QueryManager {
 
     public QueryManager(Dbmanager dbmanager) {
         this.dbmanager = dbmanager;  // zorgt ervoor dat je de private DB HIER kan veranderen in de database die in de class zit waaruit je het aanroept. deze dbmanager kan dus ALLEEN door deze constructor veranderd worden.
+        this.dbmanager.openConnection();
     }
 
     public String getCategoryName(int categoryId) { //zorgt ervoor dat de naam van de category tevoorschijn komt van de ID die je meegeeft, maar doet er voor de rest niks mee (dus geen object/list)
@@ -230,6 +231,17 @@ public class QueryManager {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
         return products;
+    }
+    
+    public void updateProductList(int product_id, int category_id, String name, double price, String description){
+        String sql ="UPDATE product SET categorie_id='" +category_id+ "', naam='" +name+ "', prijs='" +price+ "', omschrijving='"+description+"' WHERE product_id='"+product_id+"'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Productlijst updaten is niet gelukt: " + e.getMessage());
+        }
+        
     }
     
        public int getCategoryId(String categoryName) {
