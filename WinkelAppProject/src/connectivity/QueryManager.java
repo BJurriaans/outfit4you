@@ -4,11 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import main.WinkelApplication;
 import model.Category;
 import model.Klant;
 import model.Product;
-import view.ProductError;
 
 public class QueryManager {
 
@@ -214,6 +212,24 @@ public class QueryManager {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
         return klanten;
+    }
+    
+    public List<Product> getProductList(){
+        List<Product> products = new ArrayList<Product>();
+        try{
+            String sql ="SELECT * FROM product";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()){
+                products.add(new Product(result.getInt("product_id"),
+                        result.getInt("categorie_id"),
+                        result.getString("naam"), 
+                        result.getString("omschrijving"),
+                        result.getDouble("prijs")));
+            }
+        } catch(SQLException e){
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return products;
     }
     
        public int getCategoryId(String categoryName) {
