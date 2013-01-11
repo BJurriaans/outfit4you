@@ -52,6 +52,8 @@ public class ShowProductList extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnTerugProductList = new javax.swing.JButton();
         btnOpslaan = new javax.swing.JButton();
+        btnToevoegen = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setName("ProductLijstPanel"); // NOI18N
 
@@ -109,16 +111,35 @@ public class ShowProductList extends javax.swing.JPanel {
             }
         });
 
+        btnToevoegen.setText("Product Toevoegen");
+        btnToevoegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToevoegenActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Product Verwijderen");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .add(jScrollPane1))
+                    .add(layout.createSequentialGroup()
+                        .add(42, 42, 42)
+                        .add(btnToevoegen)
+                        .add(18, 18, 18)
+                        .add(btnDelete)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(btnOpslaan)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(btnTerugProductList)))
@@ -132,7 +153,9 @@ public class ShowProductList extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnOpslaan)
-                    .add(btnTerugProductList))
+                    .add(btnTerugProductList)
+                    .add(btnToevoegen)
+                    .add(btnDelete))
                 .add(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -175,9 +198,34 @@ public class ShowProductList extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:  
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToevoegenActionPerformed
+        // TODO add your handling code here:
+        WinkelApplication.getInstance().showPanel(new view.ProductAdd());
+    }//GEN-LAST:event_btnToevoegenActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        queryManager = new QueryManager(new Dbmanager());
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        int col = jTable1.getSelectedColumn();
+        
+        int product_id = (Integer) (jTable1.getValueAt(row, 0));
+        int category_id = (Integer) (jTable1.getValueAt(row, 1));
+        String name = jTable1.getValueAt(row, 2).toString();
+        double price = (Double) jTable1.getValueAt(row, 3);
+        String description = jTable1.getValueAt(row, 4).toString();
+        
+        queryManager.deleteProduct(product_id, category_id, name, price, description);
+        WinkelApplication.getInstance().showPanel(new view.ShowProductList());
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnOpslaan;
     private javax.swing.JButton btnTerugProductList;
+    private javax.swing.JButton btnToevoegen;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
