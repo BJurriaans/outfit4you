@@ -294,4 +294,17 @@ public class QueryManager {
             System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
         }
        }
+               public List<String> getUserList(){
+        List<String> users = new ArrayList<String>();
+        try{
+            String sql ="SELECT * FROM user";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()){
+                users.add(result.getString("user_name"));
+            }
+        } catch(SQLException e){
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return users;
+    }
 }
