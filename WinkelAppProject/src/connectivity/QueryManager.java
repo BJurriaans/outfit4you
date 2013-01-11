@@ -129,7 +129,7 @@ public class QueryManager {
     public List<Order> getOrder(){
             List<Order> orders = new ArrayList<Order>();
         try {
-            String sql = "SELECT * FROM order WHERE zichtbaar = 1"; 
+            String sql = "SELECT * FROM `order` WHERE zichtbaar = 1"; 
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
                 orders.add(new Order(result.getInt("order_id"), 
@@ -148,7 +148,7 @@ public class QueryManager {
         }
     
     public void deleteOrder(int order_id) {
-        String sql = "UPDATE orderregel SET zichtbaar = '0' WHERE product_id = '" + order_id + "'";
+        String sql = "UPDATE `order` SET zichtbaar = '0' WHERE order_id = '" + order_id + "'";
         ResultSet result = dbmanager.insertQuery(sql);
         try {
             result.next();
