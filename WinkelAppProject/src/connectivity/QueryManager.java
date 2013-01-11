@@ -129,12 +129,17 @@ public class QueryManager {
     public List<Order> getOrder(){
             List<Order> orders = new ArrayList<Order>();
         try {
-            String sql = "SELECT * FROM orderregel"; //haalt dus alle producten op met het meegegeven category ID
+            String sql = "SELECT * FROM order WHERE zichtbaar = 1"; 
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
-                orders.add(new Order(result.getInt("product_id"), //hetzelfde als categorylist, alleen maak je het object aan IN de add method
-                        result.getInt("order_id"),
-                        result.getInt("aantal")));
+                orders.add(new Order(result.getInt("order_id"), 
+                        result.getString("naam"),
+                        result.getString("adres"),
+                        result.getString("postcode"),
+                        result.getString("woonplaats"),
+                        result.getString("notes"),
+                        result.getString("betaalmethode"),
+                        result.getString("datum")));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -142,8 +147,8 @@ public class QueryManager {
         return orders;
         }
     
-    public void deleteOrder(int product_id, int order_id, int amount) {
-        String sql = "UPDATE orderregel SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
+    public void deleteOrder(int order_id) {
+        String sql = "UPDATE orderregel SET zichtbaar = '0' WHERE product_id = '" + order_id + "'";
         ResultSet result = dbmanager.insertQuery(sql);
         try {
             result.next();

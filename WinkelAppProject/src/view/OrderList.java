@@ -6,11 +6,11 @@ package view;
 
 import connectivity.Dbmanager;
 import connectivity.QueryManager;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import main.WinkelApplication;
 import model.Order;
-import model.Product;
 
 /**
  *
@@ -30,9 +30,14 @@ public class OrderList extends javax.swing.JPanel {
         List<Order> orders = WinkelApplication.getQueryManager().getOrder();
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         for (Order order : orders) {
-            model.addRow(new Object[]{new Integer(order.getProductId()),
-                        order.getOrderId(),
-                        order.getAmount()});
+            model.addRow(new Object[]{new Integer(order.getOrderId()),
+                        order.getName(),
+                        order.getAdres(),
+                        order.getZip(),
+                        order.getCity(),
+                        order.getNotes(),
+                        order.getPayMethod(),
+                        order.getDate()});
         }
     }
 
@@ -55,11 +60,11 @@ public class OrderList extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product_id", "Order_id", "Aantal"
+                "Order_id", "Naam", "Adres", "Postcode", "Woonplaats", "Notes", "Betaalmethode", "Datuml"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -117,11 +122,9 @@ public class OrderList extends javax.swing.JPanel {
 
         int row = jTable1.getSelectedRow();
         
-        int product_id = (Integer) (jTable1.getValueAt(row, 0));
-        int order_id = (Integer) (jTable1.getValueAt(row, 1));
-        int amount = (Integer) jTable1.getValueAt(row, 2);
+        int order_id = (Integer) (jTable1.getValueAt(row, 0));
         
-        queryManager.deleteOrder(product_id, order_id, amount);
+        queryManager.deleteOrder(order_id);
         WinkelApplication.getInstance().showPanel(new view.OrderList());
         
     }//GEN-LAST:event_btnVerwijderActionPerformed
