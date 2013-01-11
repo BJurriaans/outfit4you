@@ -101,7 +101,6 @@ public class CategoryList extends JPanel implements MouseListener, ActionListene
         int categoryId = Integer.parseInt(label.getName());
         ProductList productList = new ProductList(categoryId);
         WinkelApplication.getInstance().showPanel(productList);
-        System.out.println("test");
     }
 
     @Override
