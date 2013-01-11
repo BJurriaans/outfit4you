@@ -230,4 +230,68 @@ public class QueryManager {
         }
         return id;
     }
+       
+         public void addUser(String user, String password, Integer user_key) {
+      
+        String SQL_user = "INSERT INTO `user` (user_name, user_password, user_key)"
+                + " VALUES('" + user + "', '" + password + "', '" + user_key + "')";
+          int user_id = 0;
+        try {
+            ResultSet result = dbmanager.insertQuery(SQL_user);
+            result.next();
+            user_id = result.getInt(1);
+            } catch (SQLException e) {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+            
+        }
+    }
+       public void deleteUser(String delete) {
+           String SQL_deleteUser = "DELETE FROM `user` WHERE `user_name` = '" + delete +"'";
+           System.out.println(SQL_deleteUser);
+           try {
+            ResultSet result = dbmanager.insertQuery(SQL_deleteUser);
+            result.next();
+           }
+           catch (SQLException e) {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+        }
+       }
+       
+       public int UserID(String value) { //haalt de ID van de user op
+        int userID = 0;
+        try {
+            String sql = "SELECT user_id FROM user WHERE user_name ='" + value + "'";
+            ResultSet result = dbmanager.doQuery(sql);
+            if (result.next()) {
+                userID = (result.getInt("user_id"));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return userID;
+    }
+            public int UserKey(String value) { //haalt de ID van de user op
+        int userKey = 0;
+        try {
+            String sql = "SELECT user_key FROM user WHERE user_name ='" + value + "'";
+            ResultSet result = dbmanager.doQuery(sql);
+            if (result.next()) {
+                userKey = (result.getInt("user_key"));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return userKey;
+    }
+        public void changeUser(Integer userkey, String user) {
+           String SQL_deleteUser = "UPDATE user SET `user_key` = '"+ userkey +"' WHERE `user_name` = '" + user +"'";
+           System.out.println(SQL_deleteUser);
+           try {
+            ResultSet result = dbmanager.insertQuery(SQL_deleteUser);
+            result.next();
+           }
+           catch (SQLException e) {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+        }
+       }
 }
