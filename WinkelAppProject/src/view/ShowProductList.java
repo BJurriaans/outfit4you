@@ -207,7 +207,7 @@ public class ShowProductList extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         queryManager = new QueryManager(new Dbmanager());
-        // TODO add your handling code here:
+
         int row = jTable1.getSelectedRow();
         int col = jTable1.getSelectedColumn();
         

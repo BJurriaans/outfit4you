@@ -68,6 +68,11 @@ public class MedewerkerPanel extends javax.swing.JPanel {
         });
 
         bestellingO.setText("Bestellingen overzicht");
+        bestellingO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bestellingOActionPerformed(evt);
+            }
+        });
 
         logU.setText("Log uit");
 
@@ -126,6 +131,11 @@ public class MedewerkerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         WinkelApplication.getInstance().showPanel(new view.ShowProductList());
     }//GEN-LAST:event_productLActionPerformed
+
+    private void bestellingOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestellingOActionPerformed
+        // TODO add your handling code here:
+        WinkelApplication.getInstance().showPanel(new view.OrderList());
+    }//GEN-LAST:event_bestellingOActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bestellingO;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Category;
 import model.Klant;
+import model.Order;
 import model.Product;
 
 public class QueryManager {
@@ -122,6 +123,32 @@ public class QueryManager {
             int aantal = basket.getProductAmount(product);
             String SQL_orderProduct = "INSERT INTO orderregel (product_id,order_id,aantal) VALUES (" + product_id + "," + order_id + "," + aantal + ")";
             dbmanager.insertQuery(SQL_orderProduct);
+        }
+    }
+    
+    public List<Order> getOrder(){
+            List<Order> orders = new ArrayList<Order>();
+        try {
+            String sql = "SELECT * FROM orderregel"; //haalt dus alle producten op met het meegegeven category ID
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                orders.add(new Order(result.getInt("product_id"), //hetzelfde als categorylist, alleen maak je het object aan IN de add method
+                        result.getInt("order_id"),
+                        result.getInt("aantal")));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return orders;
+        }
+    
+    public void deleteOrder(int product_id, int order_id, int amount) {
+        String sql = "UPDATE orderregel SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Verwijderen mislukt: " + e.getMessage());
         }
     }
 
