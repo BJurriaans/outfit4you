@@ -54,6 +54,7 @@ public class ShowProductList extends javax.swing.JPanel {
         btnOpslaan = new javax.swing.JButton();
         btnToevoegen = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setName("ProductLijstPanel"); // NOI18N
 
@@ -125,6 +126,13 @@ public class ShowProductList extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Categorie legenda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +147,9 @@ public class ShowProductList extends javax.swing.JPanel {
                         .add(btnToevoegen)
                         .add(18, 18, 18)
                         .add(btnDelete)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(18, 18, 18)
+                        .add(jButton1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 18, Short.MAX_VALUE)
                         .add(btnOpslaan)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(btnTerugProductList)))
@@ -155,7 +165,8 @@ public class ShowProductList extends javax.swing.JPanel {
                     .add(btnOpslaan)
                     .add(btnTerugProductList)
                     .add(btnToevoegen)
-                    .add(btnDelete))
+                    .add(btnDelete)
+                    .add(jButton1))
                 .add(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -221,11 +232,16 @@ public class ShowProductList extends javax.swing.JPanel {
         WinkelApplication.getInstance().showPanel(new view.ShowProductList());
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        WinkelApplication.getInstance().showPanel(new view.CategoryLegenda());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnOpslaan;
     private javax.swing.JButton btnTerugProductList;
     private javax.swing.JButton btnToevoegen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
