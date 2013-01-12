@@ -67,7 +67,7 @@ public class QueryManager {
         return product;
     }
 
-    public Klant getKlant (int klantId) { // haalt klantgegevens op via klant ID
+    public Klant getKlant (int klantId) { // haalt klantgegevens op via klanten ID
         Klant klant = new Klant ();
         try {
             String sql = "SELECT * FROM klant " +
@@ -86,7 +86,42 @@ public class QueryManager {
         return klant;
         }
     
+     public List<Klant> getKlantByNaamList(String klantNaam){// haalt klant bij start van naam die u invult
+        List<Klant> klanten = new ArrayList<Klant>();
+        try{
+            String sql ="SELECT * FROM klant WHERE naam LIKE '"+klantNaam +"%'";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()){
+                klanten.add(new Klant(result.getInt("klant_id"),
+                        result.getString("naam"), 
+                        result.getString("adres"),
+                        result.getString("postcode"), 
+                        result.getString("woonplaats")));
+            }
+        } catch(SQLException e){
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return klanten;
+    }
     
+     public List<Klant> getKlantByIDList(int klantid){ //haalt klant bij start van id nummer die u invult
+        List<Klant> klanten = new ArrayList<Klant>();
+        try{
+            String sql ="SELECT * FROM klant WHERE klant_id LIKE '"+klantid +"%'";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()){
+                klanten.add(new Klant(result.getInt("klant_id"),
+                        result.getString("naam"), 
+                        result.getString("adres"),
+                        result.getString("postcode"), 
+                        result.getString("woonplaats")));
+            }
+        } catch(SQLException e){
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return klanten;
+    }
+        
     public List<Product> getProducts(int categoryId) { // haalt een lijst van producten op
         List<Product> products = new ArrayList<Product>();
         try {
