@@ -10,6 +10,7 @@ import model.Klant;
 import model.Product;
 import model.User;
 import view.ProductError;
+import model.Order;
 
 public class QueryManager {
 
@@ -17,7 +18,8 @@ public class QueryManager {
 
     public QueryManager(Dbmanager dbmanager) {
         this.dbmanager = dbmanager;  // zorgt ervoor dat je de private DB HIER kan veranderen in de database die in de class zit waaruit je het aanroept. deze dbmanager kan dus ALLEEN door deze constructor veranderd worden.
-    }
+         this.dbmanager.openConnection();
+ }
 
     public String getCategoryName(int categoryId) { //zorgt ervoor dat de naam van de category tevoorschijn komt van de ID die je meegeeft, maar doet er voor de rest niks mee (dus geen object/list)
         String categoryName = "";
@@ -68,7 +70,8 @@ public class QueryManager {
         return product;
     }
 
-    public Klant getKlant(int klantId) { // haalt klantgegevens op via klanten ID
+     public Klant getKlant(int klantId) { // haalt klantgegevens op via klant ID
+
         Klant klant = new Klant();
         try {
             String sql = "SELECT * FROM klant "
@@ -83,6 +86,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+
         }
         return klant;
     }
@@ -162,6 +166,39 @@ public class QueryManager {
             dbmanager.insertQuery(SQL_orderProduct);
         }
     }
+
+   public List<Order> getOrder(){
+            List<Order> orders = new ArrayList<Order>();
+        try {
+            String sql = "SELECT * FROM `order` WHERE zichtbaar = 1"; 
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                orders.add(new Order(result.getInt("order_id"), 
+                        result.getString("naam"),
+                        result.getString("adres"),
+                        result.getString("postcode"),
+                        result.getString("woonplaats"),
+                        result.getString("notes"),
+                        result.getString("betaalmethode"),
+                        result.getString("datum")));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return orders;
+        }
+    
+    public void deleteOrder(int order_id) {
+        String sql = "UPDATE `order` SET zichtbaar = '0' WHERE order_id = '" + order_id + "'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Verwijderen mislukt: " + e.getMessage());
+        }
+    }
+
+
 
     public void addNewProduct(int categorie_id, String naam, double prijs, String omschrijving) {
         String SQL_newProduct = "INSERT INTO product (categorie_id, naam, prijs, omschrijving)"
@@ -246,6 +283,58 @@ public class QueryManager {
         }
         return klanten;
     }
+
+
+
+    public List<Product> getProductList() {
+        List<Product> products = new ArrayList<Product>();
+        try {
+            String sql = "SELECT * FROM product WHERE zichtbaar=1";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                products.add(new Product(result.getInt("product_id"),
+                        result.getInt("categorie_id"),
+                        result.getString("naam"),
+                        result.getString("omschrijving"),
+                        result.getDouble("prijs")));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return products;
+    }
+
+    public void updateProductList(int product_id, int category_id, String name, double price, String description) {
+        String sql = "UPDATE product SET categorie_id='" + category_id + "', naam='" + name + "', prijs='" + price + "', omschrijving='" + description + "' WHERE product_id='" + product_id + "'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Productlijst updaten is niet gelukt: " + e.getMessage());
+        }
+    }
+    
+    public void updateOrderList(int order_id, String naam, String adres, String postcode, String woonplaats, String notes, String betaalmethode) {
+        String sql = "UPDATE `order` SET naam='" + naam + "', adres='" + adres + "', postcode='" + postcode + "', woonplaats='"+woonplaats+"', notes='"+notes+"', betaalmethode='"+betaalmethode+"' WHERE order_id='" + order_id + "'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Orderlijst updaten is niet gelukt: " + e.getMessage());
+        }
+    }
+    
+    public void deleteProduct(int product_id, int category_id, String name, double price, String description) {
+        String sql = "UPDATE product SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Verwijderen mislukt: " + e.getMessage());
+        }
+    }
+
+
 
     public int getCategoryId(String categoryName) {
 
