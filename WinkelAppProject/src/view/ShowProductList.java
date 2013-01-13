@@ -182,7 +182,6 @@ public class ShowProductList extends javax.swing.JPanel {
         queryManager = new QueryManager(new Dbmanager());
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
-        int col = jTable1.getSelectedColumn();
         
         int product_id = (Integer) (jTable1.getValueAt(row, 0));
         int category_id = (Integer) (jTable1.getValueAt(row, 1));
@@ -209,7 +208,6 @@ public class ShowProductList extends javax.swing.JPanel {
         queryManager = new QueryManager(new Dbmanager());
 
         int row = jTable1.getSelectedRow();
-        int col = jTable1.getSelectedColumn();
         
         int product_id = (Integer) (jTable1.getValueAt(row, 0));
         int category_id = (Integer) (jTable1.getValueAt(row, 1));

@@ -259,6 +259,16 @@ public class QueryManager {
         }
     }
     
+    public void updateOrderList(int order_id, String naam, String adres, String postcode, String woonplaats, String notes, String betaalmethode) {
+        String sql = "UPDATE `order` SET naam='" + naam + "', adres='" + adres + "', postcode='" + postcode + "', woonplaats='"+woonplaats+"', notes='"+notes+"', betaalmethode='"+betaalmethode+"' WHERE order_id='" + order_id + "'";
+        ResultSet result = dbmanager.insertQuery(sql);
+        try {
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Orderlijst updaten is niet gelukt: " + e.getMessage());
+        }
+    }
+    
     public void deleteProduct(int product_id, int category_id, String name, double price, String description) {
         String sql = "UPDATE product SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
         ResultSet result = dbmanager.insertQuery(sql);

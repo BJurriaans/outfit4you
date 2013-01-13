@@ -22,10 +22,12 @@ public class OrderList extends javax.swing.JPanel {
      * Creates new form OrderList
      */
     
+    private int i = 0;
     private QueryManager queryManager;
     
     public OrderList() {
         initComponents();
+        btnOpslaan.setVisible(false);
         
         List<Order> orders = WinkelApplication.getQueryManager().getOrder();
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -54,6 +56,7 @@ public class OrderList extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnTerug = new javax.swing.JButton();
         btnVerwijder = new javax.swing.JButton();
+        btnOpslaan = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,6 +72,11 @@ public class OrderList extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable1PropertyChange(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -87,6 +95,13 @@ public class OrderList extends javax.swing.JPanel {
             }
         });
 
+        btnOpslaan.setText("Opslaan");
+        btnOpslaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpslaanActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,6 +110,8 @@ public class OrderList extends javax.swing.JPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(btnVerwijder)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(btnOpslaan)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(btnTerug)
                 .add(19, 19, 19))
@@ -106,7 +123,8 @@ public class OrderList extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnTerug)
-                    .add(btnVerwijder))
+                    .add(btnVerwijder)
+                    .add(btnOpslaan))
                 .add(0, 13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -129,7 +147,37 @@ public class OrderList extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnVerwijderActionPerformed
 
+    private void btnOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpslaanActionPerformed
+        // TODO add your handling code here:
+        queryManager = new QueryManager(new Dbmanager());
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        
+        int order_id = (Integer) (jTable1.getValueAt(row, 0));
+        String naam = jTable1.getValueAt(row, 1).toString();
+        String adres = jTable1.getValueAt(row, 2).toString();
+        String postcode = jTable1.getValueAt(row, 3).toString();
+        String woonplaats = jTable1.getValueAt(row, 4).toString();
+        String notes = jTable1.getValueAt(row, 5).toString();
+        String betaalmethode = jTable1.getValueAt(row, 6).toString();
+        
+        
+        queryManager.updateOrderList(order_id, naam, adres, postcode, woonplaats, notes, betaalmethode);
+        
+        btnOpslaan.setVisible(false);
+    }//GEN-LAST:event_btnOpslaanActionPerformed
+
+    private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
+        // TODO add your handling code here:
+        
+         if (i >= 1) {
+            btnOpslaan.setVisible(true);
+        }
+        i++;
+    }//GEN-LAST:event_jTable1PropertyChange
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOpslaan;
     private javax.swing.JButton btnTerug;
     private javax.swing.JButton btnVerwijder;
     private javax.swing.JScrollPane jScrollPane1;

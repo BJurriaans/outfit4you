@@ -21,6 +21,8 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnVerwijder" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnOpslaan" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnTerug" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
@@ -34,6 +36,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTerug" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnVerwijder" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOpslaan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
           </Group>
@@ -110,6 +113,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jTable1PropertyChange"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -127,6 +133,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerwijderActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnOpslaan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Opslaan"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpslaanActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
