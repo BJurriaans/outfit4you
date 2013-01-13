@@ -148,9 +148,9 @@ public class LogIn extends javax.swing.JPanel {
         if (user.getUser_name().equals(tfUser.getText()) && user.getUser_password().equals(password) && user.getUser_key() == 0) {
             //WinkelApplication.getInstance().showPanel(new CategoryList()); Admin = 0
         } else if (user.getUser_name().equals(tfUser.getText()) && user.getUser_password().equals(password) && user.getUser_key() == 1) {
-            //WinkelApplication.getInstance().showPanel(new CategoryList()); Manager = 1
+            WinkelApplication.getInstance().showPanel(new ManagerPanel());  //Manager = 1
         } else if (user.getUser_name().equals(tfUser.getText()) && user.getUser_password().equals(password) && user.getUser_key() == 2) {
-            WinkelApplication.getInstance().showPanel(new MedewerkerPanel());
+            WinkelApplication.getInstance().showPanel(new MedewerkerPanel()); // Medewerker = 2
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
