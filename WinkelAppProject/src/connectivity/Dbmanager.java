@@ -10,9 +10,10 @@ public class Dbmanager {
 
     public Connection connection;   //object voor diepe sql code gok ik
 
-    /**
-     * Open database connection
-     */
+   public Dbmanager(){
+    }
+
+
     public void openConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
