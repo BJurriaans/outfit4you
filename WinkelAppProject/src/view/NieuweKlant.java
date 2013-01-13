@@ -157,17 +157,16 @@ public class NieuweKlant extends javax.swing.JPanel {
     private void opslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opslaanActionPerformed
         // TODO add your handling code here:
         List<Klant> klanten = WinkelApplication.getQueryManager().getKlantList();
-        int klantId = (klanten.size()+1);
+        int klantId = (klanten.size() + 1);
         WinkelApplication.getQueryManager().addKlant(klantId, tfNaam.getText(),
-                tfAdres.getText(),tfPostcode.getText(), tfWoonplaats.getText());
+                tfAdres.getText(), tfPostcode.getText(), tfWoonplaats.getText());
         WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
     }//GEN-LAST:event_opslaanActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                WinkelApplication.getInstance().showPanel(new view.KlantenOverzicht());
+        WinkelApplication.getInstance().showPanel(new view.KlantenOverzicht());
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton annuleren;
     private javax.swing.JButton jButton1;

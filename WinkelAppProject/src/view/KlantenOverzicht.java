@@ -22,66 +22,72 @@ public class KlantenOverzicht extends javax.swing.JPanel {
      */
     int aantalKlant;
     Object item;
+
     public KlantenOverzicht() {
         initComponents();
-        
-        List<Klant> klantenn = WinkelApplication.getQueryManager().getKlantList();  
+
+        List<Klant> klantenn = WinkelApplication.getQueryManager().getKlantList();
         fillTable(klantenn);
         zoekStatus(-1);
         jTable1.getSelectionModel().addListSelectionListener(new SelectionListener());
     }
-    
-    
-       class SelectionListener implements ListSelectionListener {
-	public void valueChanged(ListSelectionEvent e) {
-		if(e.getValueIsAdjusting())	// mouse button not released yet
-                {return;}
-		int row = jTable1.getSelectedRow();
-		if(row < 0)				// true when clearSelection
-                {return;}
-		int col = jTable1.getSelectedColumn();			
-		if(col < 0)				// true when clearSelection
-                {return;}
-                //Fill in textfields with info
-                tfKlantid.setText(jTable1.getModel().getValueAt(row, 0).toString());
-                tfNaam.setText(jTable1.getModel().getValueAt(row, 1).toString());
-                tfAdres.setText(jTable1.getModel().getValueAt(row, 2).toString());
-                tfPostcode.setText(jTable1.getModel().getValueAt(row, 3).toString());
-                tfWoonplaats.setText(jTable1.getModel().getValueAt(row, 4).toString());
-                jTable1.clearSelection();
-		}
-	}
 
-       //Fill in jtable1 met klanten
-       public final void fillTable(List<Klant> klanten){
-           DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-           model.getDataVector().removeAllElements();
-           aantalKlant = 0;
-                   for(Klant klant : klanten){
-            model.addRow(new Object[] {new Integer(klant.getKlantId()),
-            klant.getNaam(),
-            klant.getAdres(),
-            klant.getPostcode(),
-            klant.getWoonplaats()});
+    // Listen to table what row is selected then puts info in textfields then removes select focus.
+    class SelectionListener implements ListSelectionListener {
+
+        public void valueChanged(ListSelectionEvent e) {
+            if (e.getValueIsAdjusting()) // mouse button not released yet
+            {
+                return;
+            }
+            int row = jTable1.getSelectedRow();
+            if (row < 0) // true when clearSelection
+            {
+                return;
+            }
+            int col = jTable1.getSelectedColumn();
+            if (col < 0) // true when clearSelection
+            {
+                return;
+            }
+            //Fill in textfields with info
+            tfKlantid.setText(jTable1.getModel().getValueAt(row, 0).toString());
+            tfNaam.setText(jTable1.getModel().getValueAt(row, 1).toString());
+            tfAdres.setText(jTable1.getModel().getValueAt(row, 2).toString());
+            tfPostcode.setText(jTable1.getModel().getValueAt(row, 3).toString());
+            tfWoonplaats.setText(jTable1.getModel().getValueAt(row, 4).toString());
+            jTable1.clearSelection();
+        }
+    }
+
+    //Fill in jtable1 met klanten
+    public final void fillTable(List<Klant> klanten) {
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        model.getDataVector().removeAllElements();
+        aantalKlant = 0;
+        for (Klant klant : klanten) {
+            model.addRow(new Object[]{new Integer(klant.getKlantId()),
+                        klant.getNaam(),
+                        klant.getAdres(),
+                        klant.getPostcode(),
+                        klant.getWoonplaats()});
             aantalKlant++;
         }
-       }
+    }
 
-       public final void zoekStatus(int nummer){
-           if(nummer==0){
-               jlblZoekStatus.setText("Geen klant gevonden.");
-           }
-           else if(nummer==1){
-               jlblZoekStatus.setText( aantalKlant+" klant gevonden.");
-           }
-            else if(nummer>=2){
-               jlblZoekStatus.setText( aantalKlant+" klanten gevonden.");
-           }
-            else{
-                jlblZoekStatus.setText("");
-            }
-          
-       }
+    public final void zoekStatus(int nummer) {
+        if (nummer == 0) {
+            jlblZoekStatus.setText("Geen klant gevonden.");
+        } else if (nummer == 1) {
+            jlblZoekStatus.setText(aantalKlant + " klant gevonden.");
+        } else if (nummer >= 2) {
+            jlblZoekStatus.setText(aantalKlant + " klanten gevonden.");
+        } else {
+            jlblZoekStatus.setText("");
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,7 +119,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         jbReset = new javax.swing.JButton();
         jlblZoekStatus = new javax.swing.JLabel();
         jcbZoek = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        jbAanpassen = new javax.swing.JButton();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -187,7 +193,12 @@ public class KlantenOverzicht extends javax.swing.JPanel {
 
         jcbZoek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Klant ID", "Klant naam" }));
 
-        jButton1.setText("Klant aanpassen");
+        jbAanpassen.setText("Klant aanpassen");
+        jbAanpassen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAanpassenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,7 +225,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
                     .addComponent(jbReset, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jlblZoekStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAanpassen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbZoek, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -258,7 +269,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfWoonplaats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jbAanpassen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbKlantToevoegen)
@@ -275,42 +286,47 @@ public class KlantenOverzicht extends javax.swing.JPanel {
 
     private void jbTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTerugActionPerformed
         // TODO add your handling code here:
-         WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
+        WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
     }//GEN-LAST:event_jbTerugActionPerformed
 
     private void jbResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbResetActionPerformed
         // TODO add your handling code here:
-        List<Klant> klantenn = WinkelApplication.getQueryManager().getKlantList();  
+        List<Klant> klantenn = WinkelApplication.getQueryManager().getKlantList();
         fillTable(klantenn);
         zoekStatus(-1);
     }//GEN-LAST:event_jbResetActionPerformed
 
-    
-    
     private void jbZoekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbZoekActionPerformed
         // TODO add your handling code here:
         String Zoek = tfZoek.getText();
-        if(!Zoek.equals("")){ 
-        if(jcbZoek.getSelectedIndex()==1){
-                   
-                      List<Klant> klantZoekNaam = WinkelApplication.getQueryManager().getKlantByNaamList(Zoek); 
-                      fillTable(klantZoekNaam);
-        }
-        else if(jcbZoek.getSelectedIndex()==0){
-                        List<Klant> klantZoekId = WinkelApplication.getQueryManager().getKlantByIDList(Integer.parseInt(Zoek));
-                        fillTable(klantZoekId);
-        }
-        zoekStatus(aantalKlant);
+        if (!Zoek.equals("")) {
+            if (jcbZoek.getSelectedIndex() == 1) {
+
+                List<Klant> klantZoekNaam = WinkelApplication.getQueryManager().getKlantByNaamList(Zoek);
+                fillTable(klantZoekNaam);
+            } else if (jcbZoek.getSelectedIndex() == 0) {
+                List<Klant> klantZoekId = WinkelApplication.getQueryManager().getKlantByIDList(Integer.parseInt(Zoek));
+                fillTable(klantZoekId);
+            }
+            zoekStatus(aantalKlant);
     }//GEN-LAST:event_jbZoekActionPerformed
-/*       */
-       else{
+       else {
             jlblZoekStatus.setText("Box is leeg.");
         }
-    }  
+    }
+
+    private void jbAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAanpassenActionPerformed
+        // TODO add your handling code here:
+        WinkelApplication.getQueryManager().modifyKlant(Integer.parseInt(tfKlantid.getText()), tfNaam.getText(),
+                tfAdres.getText(), tfPostcode.getText(), tfWoonplaats.getText());
+        List<Klant> klantenn = WinkelApplication.getQueryManager().getKlantList();
+        fillTable(klantenn);
+        jlblZoekStatus.setText("Klant met ID " + tfKlantid.getText() + " is aangepast.");
+
+    }//GEN-LAST:event_jbAanpassenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,6 +335,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbAanpassen;
     private javax.swing.JButton jbKlantToevoegen;
     private javax.swing.JButton jbReset;
     private javax.swing.JButton jbTerug;

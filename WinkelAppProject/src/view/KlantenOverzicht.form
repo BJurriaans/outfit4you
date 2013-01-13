@@ -57,7 +57,7 @@
                   <Component id="jbReset" alignment="0" pref="212" max="32767" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jlblZoekStatus" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="jbAanpassen" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jbZoek" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tfWoonplaats" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbAanpassen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbKlantToevoegen" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -230,10 +230,13 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jbAanpassen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Klant aanpassen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAanpassenActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
