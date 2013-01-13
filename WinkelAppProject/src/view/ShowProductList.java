@@ -16,6 +16,7 @@ import connectivity.QueryManager;
  *
  * @author davida7
  */
+//test
 public class ShowProductList extends javax.swing.JPanel {
 
     /**
