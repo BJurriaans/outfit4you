@@ -163,7 +163,7 @@ public class ShowProductList extends javax.swing.JPanel {
 
     private void btnTerugProductListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerugProductListActionPerformed
         // TODO add your handling code here:
-        WinkelApplication.getInstance().showPanel(new view.MedewerkerPanel());
+        WinkelApplication.getInstance().showPanel(new view.ManagerPanel());
     }//GEN-LAST:event_btnTerugProductListActionPerformed
     
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
