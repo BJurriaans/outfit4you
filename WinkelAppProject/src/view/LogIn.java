@@ -43,7 +43,7 @@ public class LogIn extends javax.swing.JPanel {
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(755, 480));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("WinkelApplicatie"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("OutFit4You"));
         jPanel2.setName("WinkelApplicatie"); // NOI18N
 
         jLabel1.setText("User");
