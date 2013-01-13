@@ -13,15 +13,12 @@ public class Dbmanager {
     public Dbmanager(){
     }
 
-    /**
-     * Open database connection
-     */
     public void openConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost/outfit4you";
-            String user = "root", pass = "";
+            String user = "root", pass = "Holen";
 
             /** Open connection */
             connection = DriverManager.getConnection(url, user, pass);

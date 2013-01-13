@@ -8,6 +8,8 @@ import model.Category;
 import model.Klant;
 import model.Order;
 import model.Product;
+import model.User;
+
 
 public class QueryManager {
 
@@ -15,6 +17,7 @@ public class QueryManager {
 
     public QueryManager(Dbmanager dbmanager) {
         this.dbmanager = dbmanager;  // zorgt ervoor dat je de private DB HIER kan veranderen in de database die in de class zit waaruit je het aanroept. deze dbmanager kan dus ALLEEN door deze constructor veranderd worden.
+
         this.dbmanager.openConnection();
     }
 
@@ -67,7 +70,9 @@ public class QueryManager {
         return product;
     }
 
-    public Klant getKlant(int klantId) { // haalt klantgegevens op via klant ID
+     public Klant getKlant(int klantId) { // haalt klantgegevens op via klant ID
+
+
         Klant klant = new Klant();
         try {
             String sql = "SELECT * FROM klant "
@@ -82,8 +87,48 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+
         }
         return klant;
+
+
+        }
+
+    public List<Klant> getKlantByNaamList(String klantNaam) {// haalt klant bij start van naam die u invult
+        List<Klant> klanten = new ArrayList<Klant>();
+        try {
+            String sql = "SELECT * FROM klant WHERE naam LIKE '" + klantNaam + "%'";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                klanten.add(new Klant(result.getInt("klant_id"),
+                        result.getString("naam"),
+                        result.getString("adres"),
+                        result.getString("postcode"),
+                        result.getString("woonplaats")));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return klanten;
+    }
+
+    public List<Klant> getKlantByIDList(int klantid) { //haalt klant bij start van id nummer die u invult
+        List<Klant> klanten = new ArrayList<Klant>();
+        try {
+            String sql = "SELECT * FROM klant WHERE klant_id LIKE '" + klantid + "%'";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                klanten.add(new Klant(result.getInt("klant_id"),
+                        result.getString("naam"),
+                        result.getString("adres"),
+                        result.getString("postcode"),
+                        result.getString("woonplaats")));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return klanten;
+
     }
 
     public List<Product> getProducts(int categoryId) { // haalt een lijst van producten op
@@ -125,8 +170,10 @@ public class QueryManager {
             dbmanager.insertQuery(SQL_orderProduct);
         }
     }
+
     
-    public List<Order> getOrder(){
+   public List<Order> getOrder(){
+
             List<Order> orders = new ArrayList<Order>();
         try {
             String sql = "SELECT * FROM `order` WHERE zichtbaar = 1"; 
@@ -157,6 +204,7 @@ public class QueryManager {
         }
     }
 
+
     public void addNewProduct(int categorie_id, String naam, double prijs, String omschrijving) {
         String SQL_newProduct = "INSERT INTO product (categorie_id, naam, prijs, omschrijving)"
                 + " VALUES (' " + categorie_id + "', '" + naam + "', '" + prijs + "', '" + omschrijving + "')";
@@ -168,6 +216,18 @@ public class QueryManager {
 
         }
     }
+
+
+    public void deleteProduct(int product_id) {
+        String SQL_deleteProduct = "UPDATE product SET zichtbaar = '0' WHERE product_id = '" + product_id + "'";
+        try {
+            ResultSet result = dbmanager.insertQuery(SQL_deleteProduct);
+            result.next();
+        } catch (SQLException e) {
+            System.out.println("Verwijderen van product doet het niet :" + e.getMessage());
+        }
+    }
+
 
     public void modifyProduct(int product_id, int categorie_id, String naam, double prijs, String omschrijving) {
         String SQL_modifyProduct = "UPDATE product SET categorie_id = '" + categorie_id + "', naam = '" + naam + "', prijs = '" + prijs + "', omschrijving = '"
@@ -231,6 +291,7 @@ public class QueryManager {
         return klanten;
     }
 
+
     public List<Product> getProductList() {
         List<Product> products = new ArrayList<Product>();
         try {
@@ -293,4 +354,23 @@ public class QueryManager {
         }
         return id;
     }
+
+  public User getUser4LogIn(String user_name){
+        User user = new User();
+        try{
+            String sql = "SELECT * FROM user "+
+                    "WHERE user_name='"+user_name+"'";
+            ResultSet result = dbmanager.doQuery(sql);
+            if(result.next()){
+                user = new User(result.getInt("user_id"),
+                        result.getString("user_name"),
+                        result.getString("user_password"),
+                        result.getInt("user_key"));
+            }
+        } catch (SQLException e){
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return user;
+    }
+  
 }

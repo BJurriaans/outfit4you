@@ -4,15 +4,20 @@
  */
 package model;
 
+
 import java.util.Date;
+
+
 
 /**
  *
  * @author davida7
  */
-public class Order {
 
+public class Order {
+    private int productId;
     private int orderId;
+    private int amount;
     private String naam;
     private String adres;
     private String postcode;
@@ -20,6 +25,19 @@ public class Order {
     private String notes;
     private String betaalmethode;
     private String date;
+
+    public Order(int productId, int orderId, int amount){
+        this.productId = productId;
+        this.orderId = orderId;
+        this.amount = amount;
+    }
+    
+    public int getProductId(){
+        return productId;
+    }
+    
+   
+
     
     public Order(int orderId, String naam, String adres, String postcode, String woonplaats, String notes, String betaalmethode, String Date){
         this.orderId = orderId;
@@ -29,12 +47,21 @@ public class Order {
         this.woonplaats = woonplaats;
         this.notes = notes;
         this.betaalmethode = betaalmethode;
+
     }
     
     public int getOrderId(){
         return orderId;
     }
     
+
+
+    public int getAmount(){
+        return amount;
+    }
+    
+
+
      public String getName(){
         return naam;
     }
