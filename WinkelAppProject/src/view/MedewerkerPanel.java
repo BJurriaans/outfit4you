@@ -17,9 +17,6 @@ public class MedewerkerPanel extends javax.swing.JPanel {
      */
     public MedewerkerPanel() {
         initComponents();
-        LogIn usernaam =  LogIn();
-        String name = usernaam.getUsernaam();
-        jLabel1.setText(name);
     }
 
     /**
