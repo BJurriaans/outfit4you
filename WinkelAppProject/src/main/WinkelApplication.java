@@ -94,7 +94,7 @@ public final class WinkelApplication {
           //showPanel(new productDelete.ProductDeleteAsk());
           //showPanel(new view.ProductAdd());
           //showPanel(new productModify.ProductModifyAsk());
-          showPanel(new view.MedewerkerPanel());
+          showPanel(new view.LogIn());
         mainWindow.setVisible(true);
     }
 
