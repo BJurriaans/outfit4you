@@ -42,7 +42,7 @@ public class CategoryList extends JPanel implements MouseListener, ActionListene
     private void addTitle() {
 
         JLabel lblTitle = new JLabel();
-        lblTitle.setText("Winkelapplicatie");
+        lblTitle.setText("Outfit4You Menu");
         lblTitle.setBounds(20, 20, 150, 20);
         lblTitle.setFont(WinkelApplication.FONT_16_BOLD);
         add(lblTitle);
