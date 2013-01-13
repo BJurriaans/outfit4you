@@ -126,14 +126,6 @@ public class LogIn extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    // Getting usernaam for Menu panel to put name whom is logged in.
-    public String getUsernaam() {
-        return usernaam;
-    }
-
-    public void setUsernaam(String usernaam ) {
-        this.usernaam = usernaam;
-    }
 
     private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
         // TODO add your handling code here:
@@ -144,7 +136,9 @@ public class LogIn extends javax.swing.JPanel {
         User user = WinkelApplication.getQueryManager().getUser4LogIn(tfUser.getText());
         char arr[] = tfPassword.getPassword();
         String password = new String(arr);
-        setUsernaam(tfUser.getText());
+        ManagerPanel man = new ManagerPanel();
+        man.updateUserStat(user);
+        
         if (user.getUser_name().equals(tfUser.getText()) && user.getUser_password().equals(password) && user.getUser_key() == 0) {
             //WinkelApplication.getInstance().showPanel(new CategoryList()); Admin = 0
         } else if (user.getUser_name().equals(tfUser.getText()) && user.getUser_password().equals(password) && user.getUser_key() == 1) {

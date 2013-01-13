@@ -2,15 +2,24 @@
 package view;
 
 import main.WinkelApplication;
+import model.User;
 
 
 public class ManagerPanel extends javax.swing.JPanel {
 
+    String usernaam;
+    
     public ManagerPanel() {
         initComponents();
+        jlblInLog.setText(usernaam);
+      jLabel1.setText(usernaam);
     }
 
-    
+    public User updateUserStat(User u){
+        this.usernaam = u.getUser_name().toString();
+        return u;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
