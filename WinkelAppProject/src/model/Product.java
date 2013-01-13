@@ -7,17 +7,21 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    private int voorraad;
+
+
 
     public Product() {
-        this(-1, -1, "", "", 0.0);
+        this(-1, -1, "", "", 0.0, 0);
     }
 
-    public Product(int product_id, int categorie_id, String name, String description, double price) {
+    public Product(int product_id, int categorie_id, String name, String description, double price, int voorraad) {
         this.productId = product_id;
         this.categorieId = categorie_id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.voorraad = voorraad;
     }
 
     /**
@@ -90,6 +94,15 @@ public class Product {
         this.categorieId = categorieId;
     }
 
+    public int getVoorraad() {
+        return voorraad;
+    }
+
+    public void setVoorraad(int voorraad) {
+        this.voorraad = voorraad;
+    }
+    
+    
     @Override
     public String toString() {
         return name;

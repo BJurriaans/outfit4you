@@ -59,7 +59,8 @@ public class QueryManager {
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
-                        result.getDouble("prijs"));
+                        result.getDouble("prijs"),
+                        result.getInt("voorraad"));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -96,7 +97,8 @@ public class QueryManager {
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
-                        result.getDouble("prijs")));
+                        result.getDouble("prijs"),
+                        result.getInt("voorraad")));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -236,7 +238,8 @@ public class QueryManager {
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
-                        result.getDouble("prijs")));
+                        result.getDouble("prijs"),
+                        result.getInt("voorraad")));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
