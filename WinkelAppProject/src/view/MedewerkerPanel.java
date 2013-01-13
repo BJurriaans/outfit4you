@@ -77,6 +77,11 @@ public class MedewerkerPanel extends javax.swing.JPanel {
         });
 
         logU.setText("Log uit");
+        logU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logUActionPerformed(evt);
+            }
+        });
 
         jlblInLog.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlblInLog.setForeground(new java.awt.Color(0, 0, 102));
@@ -124,7 +129,7 @@ public class MedewerkerPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bestellingO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logU, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,6 +158,11 @@ public class MedewerkerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         WinkelApplication.getInstance().showPanel(new view.OrderList());
     }//GEN-LAST:event_bestellingOActionPerformed
+
+    private void logUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logUActionPerformed
+        // TODO add your handling code here:
+        WinkelApplication.getInstance().showPanel(new view.LogIn());
+    }//GEN-LAST:event_logUActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
