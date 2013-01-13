@@ -2,7 +2,6 @@
 package view;
 
 import main.WinkelApplication;
-import model.User;
 
 
 public class ManagerPanel extends javax.swing.JPanel {
@@ -11,14 +10,8 @@ public class ManagerPanel extends javax.swing.JPanel {
     
     public ManagerPanel() {
         initComponents();
-        jlblInLog.setText(usernaam);
-      jLabel1.setText(usernaam);
     }
 
-    public User updateUserStat(User u){
-        this.usernaam = u.getUser_name().toString();
-        return u;
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,8 +23,6 @@ public class ManagerPanel extends javax.swing.JPanel {
         bestellingP = new javax.swing.JButton();
         bestellingO = new javax.swing.JButton();
         logU = new javax.swing.JButton();
-        jlblInLog = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(755, 480));
         setName("mwPanel"); // NOI18N
@@ -79,11 +70,6 @@ public class ManagerPanel extends javax.swing.JPanel {
             }
         });
 
-        jlblInLog.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jlblInLog.setForeground(new java.awt.Color(0, 0, 102));
-
-        jLabel1.setText("Ingelogd als");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,20 +86,11 @@ public class ManagerPanel extends javax.swing.JPanel {
                     .addComponent(productL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logU, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(151, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlblInLog, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlblInLog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(53, 53, 53)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(klantN, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bestellingP, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,7 +102,7 @@ public class ManagerPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bestellingO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logU, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,8 +141,6 @@ public class ManagerPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bestellingO;
     private javax.swing.JButton bestellingP;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jlblInLog;
     private javax.swing.JButton klantN;
     private javax.swing.JButton klantOA;
     private javax.swing.JButton logU;

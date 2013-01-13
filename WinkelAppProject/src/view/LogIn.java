@@ -136,8 +136,6 @@ public class LogIn extends javax.swing.JPanel {
         User user = WinkelApplication.getQueryManager().getUser4LogIn(tfUser.getText());
         char arr[] = tfPassword.getPassword();
         String password = new String(arr);
-        ManagerPanel man = new ManagerPanel();
-        man.updateUserStat(user);
         
         if (user.getUser_name().equals(tfUser.getText()) && user.getUser_password().equals(password) && user.getUser_key() == 0) {
             //WinkelApplication.getInstance().showPanel(new CategoryList()); Admin = 0
